@@ -2,8 +2,43 @@
 <html>
 <head>
 	<title>Health Map</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+	<style>
+       #map {
+        height: 400px;
+        width: 80%;
+        background-color: grey;
+        padding: 10px;
+        align-content: center;
+        margin-left: 10%;
+       }
+    </style>
 </head>
 <body>
-Hi We are Team codex. Sahil
+<div class="container" style="background-color: grey;">
+	<div class="row">
+		<div class="col-md-4">
+			<h2>Health Map</h2>
+		</div>
+	</div>
+</div>
+<div id="map"></div>
+<script>
+      function initMap() {
+        var uluru = {lat: 19, lng: 73};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru,
+          clickableIcons : false
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOjj5yR_uy57jVp0u9moK2SJbtd756swk&callback=initMap">
+    </script>
 </body>
-</html>>
+</html>
