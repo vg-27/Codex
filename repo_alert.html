@@ -37,7 +37,11 @@
       var marker;
       var infowindow;
       var messagewindow;
+      var x = document.getElementById('form');
+      x.style.display = "none";
 
+      var y = document.getElementById('message');
+      y.style.display ="none";
       function initMap() {
         var origin = {lat: 19.134729, lng: 72.909752};
         map = new google.maps.Map(document.getElementById('map'), {
@@ -46,11 +50,11 @@
         });
 
         infowindow = new google.maps.InfoWindow({
-          content: document.getElementById('form')
+          content: x
         });
 
         messagewindow = new google.maps.InfoWindow({
-          content: document.getElementById('message')
+          content: y
         });
 
         google.maps.event.addListener(map, 'click', function(event) {
@@ -61,6 +65,7 @@
 
 
           google.maps.event.addListener(marker, 'click', function() {
+            x.style.display = "block";
             infowindow.open(map, marker);
           });
         });
@@ -78,6 +83,7 @@
 
           if (true/*responseCode == 200 && data.length <= 1*/) {
             infowindow.close();
+            y.style.display="block";
             messagewindow.open(map, marker);
           }
         });
