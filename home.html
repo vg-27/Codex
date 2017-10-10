@@ -27,7 +27,7 @@
           downloadUrl('markers.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
-            // var list_of_marks = [];//array of marker
+            var list_of_marks = [];//array of marker
             Array.prototype.forEach.call(markers, function(markerElem) {
               var id = markerElem.getAttribute('id');
               var name = markerElem.getAttribute('name');
@@ -49,13 +49,13 @@
                 map: map,
                 position: point
               });
-              // list_of_marks.push(marker);
+              list_of_marks.push(marker);
               marker.addListener('click', function() {
                 infoWindow.setContent(infowincontent);
                 infoWindow.open(map, marker);
               });
             });
-            // var markerCluster = new MarkerClusterer(map, list_of_marks,{imagePath: 'images/m'});
+            var markerCluster = new MarkerClusterer(map, list_of_marks,{imagePath: 'images/m'});
           });
       }
 
