@@ -2,10 +2,10 @@
 require 'db_info.php';
 // Gets data from URL parameters.
 $name = $_GET['name'];
-$address = $_GET['address'];
+$des = $_GET['des'];
 $lat = $_GET['lat'];
 $lng = $_GET['lng'];
-$type = $_GET['type'];
+
 
 // Opens a connection to a MySQL server.
 $connection=mysqli_connect ("localhost", $username, $password, $database);
@@ -25,14 +25,13 @@ if (!$db_selected) {
 }
 
 // Inserts new row with place data.
-$query = sprintf("INSERT INTO markers " .
-         " (name, address, lat, lng, type ) " .
-         " VALUES ('%s', '%s', '%s', '%s', '%s');",
+$query = sprintf("INSERT INTO alerts " .
+         " (disease_name, description, lat, lng) " .
+         " VALUES ('%s', '%s', '%s', '%s');",
          mysqli_real_escape_string($connection, $name),
-         mysqli_real_escape_string($connection, $address),
+         mysqli_real_escape_string($connection, $des),
          mysqli_real_escape_string($connection, $lat),
-         mysqli_real_escape_string($connection, $lng),
-         mysqli_real_escape_string($connection, $type));
+         mysqli_real_escape_string($connection, $lng));
 
 $result = mysqli_query($connection, $query);
 
