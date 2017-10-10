@@ -21,7 +21,7 @@ if (!$db_selected) {
 
 // Select all the rows in the markers table
 
-$query = "SELECT * FROM markers";
+$query = "SELECT * FROM alerts";
 $result = mysqli_query($connection, $query);
 if (!$result) {
   die('Invalid query: ' . mysqli_error($connection));
@@ -36,11 +36,10 @@ while ($row = @mysqli_fetch_assoc($result)){
   $node = $dom->createElement("marker");
   $newnode = $parnode->appendChild($node);
   $newnode->setAttribute("id",$row['id']);
-  $newnode->setAttribute("name",$row['name']);
-  $newnode->setAttribute("address", $row['address']);
+  $newnode->setAttribute("name",$row['disease_name']);
+  $newnode->setAttribute("des", $row['description']);
   $newnode->setAttribute("lat", $row['lat']);
   $newnode->setAttribute("lng", $row['lng']);
-  $newnode->setAttribute("type", $row['type']);
 }
 
 echo $dom->saveXML();

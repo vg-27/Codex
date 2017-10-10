@@ -31,8 +31,7 @@
             Array.prototype.forEach.call(markers, function(markerElem) {
               var id = markerElem.getAttribute('id');
               var name = markerElem.getAttribute('name');
-              var address = markerElem.getAttribute('address');
-              var type = markerElem.getAttribute('type');
+              var description = markerElem.getAttribute('des');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
@@ -44,13 +43,11 @@
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = address
+              text.textContent = description
               infowincontent.appendChild(text);
-              // var icon = customLabel[type] || {};
               var marker = new google.maps.Marker({
                 map: map,
-                position: point,
-                // label: icon.label
+                position: point
               });
               list_of_marks.push(marker);
               marker.addListener('click', function() {
