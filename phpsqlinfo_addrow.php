@@ -5,6 +5,7 @@ $name = $_GET['name'];
 $des = $_GET['des'];
 $lat = $_GET['lat'];
 $lng = $_GET['lng'];
+$cases = $_GET['cases'];
 
 
 // Opens a connection to a MySQL server.
@@ -26,12 +27,13 @@ if (!$db_selected) {
 
 // Inserts new row with place data.
 $query = sprintf("INSERT INTO alerts " .
-         " (disease_name, description, lat, lng) " .
-         " VALUES ('%s', '%s', '%s', '%s');",
+         " (disease_name, description, lat, lng, cases) " .
+         " VALUES ('%s', '%s', '%s', '%s', '%s');",
          mysqli_real_escape_string($connection, $name),
          mysqli_real_escape_string($connection, $des),
          mysqli_real_escape_string($connection, $lat),
-         mysqli_real_escape_string($connection, $lng));
+         mysqli_real_escape_string($connection, $lng),
+         mysqli_real_escape_string($connection, $cases));
 
 $result = mysqli_query($connection, $query);
 

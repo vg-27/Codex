@@ -23,15 +23,14 @@
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          // Change this depending on the name of your PHP or XML file
           downloadUrl('markers.php', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
-            var list_of_marks = [];//array of marker
             Array.prototype.forEach.call(markers, function(markerElem) {
               var id = markerElem.getAttribute('id');
               var name = markerElem.getAttribute('name');
               var description = markerElem.getAttribute('des');
+              var cases = markerElem.getAttribute('cases');
               var point = new google.maps.LatLng(
                   parseFloat(markerElem.getAttribute('lat')),
                   parseFloat(markerElem.getAttribute('lng')));
@@ -45,17 +44,23 @@
               var text = document.createElement('text');
               text.textContent = description
               infowincontent.appendChild(text);
-              var marker = new google.maps.Marker({
-                map: map,
-                position: point
-              });
-              list_of_marks.push(marker);
-              marker.addListener('click', function() {
+              /*creating circles with area proportional to no. of cases*/
+              var intensity = new google.maps.Circle({
+	            strokeWeight: 0,
+	            fillColor: '#0000FF',
+	            fillOpacity: 0.35,
+	            map: map,
+	            center: point,
+	            radius: Math.sqrt(cases) * 1000,
+	            position: point
+	          });
+              /*info window on clicking the circle*/
+              intensity.addListener('click', function() {
                 infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
+                infoWindow.setPosition(intensity.getCenter());
+                infoWindow.open(map);
               });
             });
-            var markerCluster = new MarkerClusterer(map, list_of_marks,{imagePath: 'images/m'});
           });
       }
 

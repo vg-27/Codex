@@ -20,6 +20,7 @@
       <table>
       <tr><td>Disease:</td> <td><input type='text' id='name'/> </td> </tr>
       <tr><td>Description:</td> <td><input type='text' id='des'/> </td> </tr>
+      <tr><td>No of cases:</td><td><input type="text" id="cases"></td></tr>
       <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
       </table>
     </div>
@@ -66,9 +67,10 @@
       function saveData() {
         var name = escape(document.getElementById('name').value);
         var des = escape(document.getElementById('des').value);
+        var cases = escape(document.getElementById('cases').value);
         var latlng = marker.getPosition();
         var url = 'phpsqlinfo_addrow.php?name=' + name + '&des=' + des +
-                  '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
+                  '&lat=' + latlng.lat() + '&lng=' + latlng.lng() + '&cases=' + cases;
 
         downloadUrl(url, function(data, responseCode) {
 
