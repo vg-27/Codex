@@ -37,7 +37,7 @@
 					</small>
 
 				<?php endif ?>
-					<iframe src="repo_alert.html" height="600px" width="100%" style="border:none;" name="fr"></iframe>
+				<iframe src="repo_alert.html" height="600px" width="100%" style="border:none;" name="fr"></iframe>
 
 	
 
