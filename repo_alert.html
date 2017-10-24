@@ -7,12 +7,12 @@
     <title>From Info Windows to a Database: Saving User-Added Form Data</title>
     <style>
          #map {
-          height: 400px;
-          width: 80%;
+          height: 100vh;
+          width: 100%;
           background-color: grey;
-          padding: 10px;
+          /*padding: 10px;*/
           align-content: center;
-          margin-left: 10%;
+          /*margin-left: 10%;*/
          }
     </style>
   </head>
@@ -57,8 +57,6 @@
             position: event.latLng,
             map: map
           });
-
-
           google.maps.event.addListener(marker, 'click', function() {
             x.style.display = "block";
             infowindow.open(map, marker);
@@ -79,6 +77,7 @@
           if (true /*responseCode == 200 && data.length <= 1*/) {
             console.log(data);
             infowindow.close();
+            marker.setMap(null);
             y.style.display="block";
             messagewindow.open(map, marker);
           }

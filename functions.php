@@ -1,8 +1,9 @@
 <?php 
+	require 'db_info.php';
 	session_start();
 
 	// connect to database
-	$db = mysqli_connect('localhost', 'root', 'Destination1', 'multi_login');
+	$db = mysqli_connect('localhost', $username, $password, $database);
 
 	// variable declaration
 	$username = "";
@@ -18,12 +19,13 @@
 	if (isset($_POST['login_btn'])) {
 		login();
 	}
-
+	//if GET request is sent with logout='1'
 	if (isset($_GET['logout'])) {
 		session_destroy();
 		unset($_SESSION['user']);
 		header("location: ../login.php");
 	}
+	
 
 	// REGISTER USER
 	function register(){

@@ -41,6 +41,7 @@ while ($row = @mysqli_fetch_assoc($result)){
   $newnode->setAttribute("lat", $row['lat']);
   $newnode->setAttribute("lng", $row['lng']);
   $newnode->setAttribute("cases",$row['cases']);
+  $newnode->setAttribute("flag",$row['flag']);
 }
 
 echo $dom->saveXML();
